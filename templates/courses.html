@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+    <div class="container">
+    <h1>Available Courses</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Instructor</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        {% for course in courses %}
+            <tr>
+                <td>{{ course.name }}</td>
+                <td>{{ course.code }}</td>
+                <td>{{ course.instructor }}</td>
+                <td>{{ course.start_date }}</td>
+                <td>{{ course.end_date }}</td>
+                <td>{{ course.is_active|yesno:"Active,Inactive" }}</td>
+                <td>
+                    <a class="btn btn-danger" href="{% url 'edit_course' course.id %}">Edit</a>
+                </td>
+
+                <td>
+                    <a class="btn btn-danger" href="{% url 'delete_course' course.id %}"
+                       onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="7">No courses available.</td>
+            </tr>
+        {% endfor %}
+    </table>
+{#    <td>#}
+{#        <a class="btn btn-secondary" href="{% url 'add_course' %}">Add course</a>#}
+{#    </td>#}
+{% endblock %}
+</div>
