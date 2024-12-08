@@ -22,8 +22,18 @@ from main import views
 urlpatterns = [
     path('', views.dashboard, name='dashboard'),
     path('students', views.students, name='students'),
+path('add/student', views.add_student, name='add_student'),
+    path('students/update/<int:student_id>', views.update_student, name='update_student'),
+    path('students/delete/<int:student_id>', views.delete_student, name='delete_student'),
     path('courses', views.courses, name='courses'),
+    path('courses/add/', views.add_course, name='add_course'),
+    path('courses/<int:course_id>/edit/', views.edit_course, name='edit_course'),
+    path('courses/<int:course_id>/delete/', views.delete_course, name='delete_course'),
     path('enrollments', views.enrollments, name='enrollments'),
+    path('enrollments/add/', views.add_enrollment, name='add_enrollment'),
+    path('login', views.login_page, name='login'),
+    path('logout', views.logout_page, name='logout'),
+
     path('admin/', admin.site.urls),
 
 ]
